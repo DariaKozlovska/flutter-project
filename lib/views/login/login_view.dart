@@ -1,11 +1,18 @@
 import 'package:dsw_51762/utils/my_colors.dart';
 import 'package:dsw_51762/utils/my_images.dart';
+import 'package:dsw_51762/views/register/register_view.dart';
+import 'package:dsw_51762/views/widgets/basic_text_form_field.dart';
 import 'package:flutter/material.dart';
 
-import '../register/register_view.dart';
-
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   const LoginView({super.key});
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  bool boolValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +22,14 @@ class LoginView extends StatelessWidget {
           width: double.infinity,
           child: Container(
             padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 56.0
+              horizontal: 20,
+              vertical: 56,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(MyImages.logo),
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -31,78 +38,21 @@ class LoginView extends StatelessWidget {
                     fontSize: 30,
                     fontWeight: FontWeight.w700,
                     color: MyColors.darkPurpleColor,
-                  )
-                ),
-                ),
-                SizedBox(height: 26,),
-                TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16.0),
-                      borderSide: BorderSide(
-                        color: MyColors.lightPurpleColor,
-                        width: 2.0,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16.0),
-                        borderSide: BorderSide(
-                          color: MyColors.lightPurpleColor,
-                          width: 2.0,
-                        )
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16.0),
-                      borderSide: BorderSide(
-                        color: MyColors.lightPurpleColor,
-                        width: 2.0,
-                      )
-                    ),
-                    hintText: 'Email or User Name',
-                    hintStyle: TextStyle(
-                      color: Color.fromRGBO(0, 0, 0, 0.3),
-                    ),
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Image.asset(MyImages.userIcon,),)
                   ),
                 ),
-                SizedBox(height: 20,),
-                TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16.0),
-                      borderSide: BorderSide(
-                        color: MyColors.lightPurpleColor,
-                        width: 2.0,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16.0),
-                        borderSide: BorderSide(
-                          color: MyColors.lightPurpleColor,
-                          width: 2.0,
-                        )
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16.0),
-                        borderSide: BorderSide(
-                          color: MyColors.lightPurpleColor,
-                          width: 2.0,
-                        )
-                    ),
+                ),
+                const SizedBox(height: 26,),
+                const BasicTextFormField(
+                  hintText: 'Email or user Name',
+                  preIcon: MyImages.userIcon,
+                ),
+                const SizedBox(height: 20,),
+                const BasicTextFormField(
                     hintText: 'Password',
-                    hintStyle: TextStyle(
-                      color: Color.fromRGBO(0, 0, 0, 0.3),
-                    ),
-                    prefixIcon: Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Image.asset(MyImages.lockIcon,)
-                    )
-                  ),
+                    preIcon: MyImages.lockIcon,
+                    obscureText: true,
                 ),
-                SizedBox(height: 26,),
+                const SizedBox(height: 26,),
                 Align(
                   alignment: Alignment.topRight,
                   child: GestureDetector(
@@ -111,27 +61,27 @@ class LoginView extends StatelessWidget {
                         'Forget Password ?',
                         style: TextStyle(
                           color: MyColors.darkPurpleColor,
-                          fontSize: 15.0,
+                          fontSize: 15,
                           fontWeight: FontWeight.w700,
-                        )
+                        ),
                     ),
                   ),
                 ),
-                SizedBox(height: 26,),
+                const SizedBox(height: 26,),
                 SizedBox(
                   width: double.infinity,
                   child: FilledButton(
                     style: FilledButton.styleFrom(
                       backgroundColor: MyColors.lightPurpleColor,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)
-                      )
+                          borderRadius: BorderRadius.circular(15),
+                      ),
                     ),
                     child:  Text(
                         'Sing In',
                       style: TextStyle(
                         color: MyColors.whiteColor,
-                        fontSize: 15.0,
+                        fontSize: 15,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -143,18 +93,18 @@ class LoginView extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(height: 60,),
+                const SizedBox(height: 60,),
                 Text(
                   'Or sign in With',
                   style: TextStyle(
                     color: MyColors.darkPurpleColor,
-                    fontSize: 15.0,
-                  )
+                    fontSize: 15,
+                  ),
                 ),
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 Container(
                   alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(horizontal: 50.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -162,58 +112,58 @@ class LoginView extends StatelessWidget {
                         onPressed: () {
                           print("Google");
                         },
-                        child: Image.asset(MyImages.googleIcon),
                       style: ElevatedButton.styleFrom(
-                        minimumSize: Size(50, 50),
+                        minimumSize: const Size(50, 50),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
-                        )
-                      )
+                        ),
+                      ),
+                        child: Image.asset(MyImages.googleIcon),
                     ),
                     ElevatedButton(
                       onPressed: () {
                         print("Fb");
                       },
-                      child: Image.asset(MyImages.fbIcon),
                         style: ElevatedButton.styleFrom(
                             minimumSize: Size(50, 50),
                             padding: EdgeInsets.zero,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15.0),
                             )
-                        )
+                        ),
+                      child: Image.asset(MyImages.fbIcon)
                     ),
                     ElevatedButton(
                       onPressed: () {
                         print("x");
                       },
-                      child: Image.asset(MyImages.xIcon),
                         style: ElevatedButton.styleFrom(
                             minimumSize: Size(50, 50),
                             padding: EdgeInsets.zero,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15.0),
                             )
-                        )
+                        ),
+                      child: Image.asset(MyImages.xIcon)
                     ),
                     ElevatedButton(
                       onPressed: () {
                         print("In");
                       },
-                      child: Image.asset(MyImages.inIcon),
                         style: ElevatedButton.styleFrom(
                             minimumSize: Size(50, 50),
                             padding: EdgeInsets.zero,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15.0),
-                            )
-                        )
+                            ),
+                        ),
+                      child: Image.asset(MyImages.inIcon),
                     ),
                   ],
                   ),
                 ),
-                SizedBox(height: 70.0,),
+                const SizedBox(height: 70,),
                 Container(
                   alignment: FractionalOffset.bottomCenter,
                 child: Row(
@@ -223,10 +173,10 @@ class LoginView extends StatelessWidget {
                       "Don't have account ?",
                       style: TextStyle(
                         color: MyColors.darkPurpleColor,
-                        fontSize: 15.0,
-                      )
+                        fontSize: 15,
+                      ),
                     ),
-                    SizedBox(width: 6.0,),
+                    const SizedBox(width: 6,),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -234,15 +184,8 @@ class LoginView extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => const RegisterView()),
                         );
                       },
-                      child: Text(
-                        'Sing Up',
-                        style: TextStyle(
-                          color: MyColors.darkPurpleColor,
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.w700,
-                        )
-                      )
-                    )
+                      child: _singInText('Sing Up')
+                    ),
                   ],
                 ),
                 ),
@@ -253,4 +196,15 @@ class LoginView extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _singInText(String text){
+  return Text(
+    text,
+    style: TextStyle(
+      color: MyColors.darkPurpleColor,
+      fontSize: 15,
+      fontWeight: FontWeight.w700,
+    ),
+  );
 }

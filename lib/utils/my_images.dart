@@ -7,4 +7,6 @@ class MyImages {
   static const fbIcon = '$_assetsFolder/fb-icon.png';
   static const xIcon = '$_assetsFolder/x-icon.png';
   static const inIcon = '$_assetsFolder/in-icon.png';
+
+  static const backIcon = '$_assetsFolder/icon-back.png';
 }
