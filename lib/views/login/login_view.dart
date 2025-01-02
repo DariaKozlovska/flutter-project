@@ -1,6 +1,7 @@
 import 'package:dsw_51762/utils/my_colors.dart';
 import 'package:dsw_51762/utils/my_images.dart';
 import 'package:dsw_51762/views/register/register_view.dart';
+import 'package:dsw_51762/views/widgets/basic_text.dart';
 import 'package:dsw_51762/views/widgets/basic_text_form_field.dart';
 import 'package:flutter/material.dart';
 
@@ -26,20 +27,12 @@ class _LoginViewState extends State<LoginView> {
               vertical: 56,
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(MyImages.logo),
                 const SizedBox(height: 20,),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                  'Sing In',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700,
-                    color: MyColors.darkPurpleColor,
-                  ),
-                ),
+                  child: BasicText(text: 'Sing In', fontWeight: FontWeight.w700, fontSize: 30,),
                 ),
                 const SizedBox(height: 26,),
                 const BasicTextFormField(
@@ -57,19 +50,13 @@ class _LoginViewState extends State<LoginView> {
                   alignment: Alignment.topRight,
                   child: GestureDetector(
                     onTap: () => print('xxx'),
-                    child:  Text(
-                        'Forget Password ?',
-                        style: TextStyle(
-                          color: MyColors.darkPurpleColor,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                        ),
-                    ),
+                    child:  const BasicText(text: 'Forget Password ?', fontWeight: FontWeight.w700,),
                   ),
                 ),
                 const SizedBox(height: 26,),
                 SizedBox(
                   width: double.infinity,
+                  height: 50,
                   child: FilledButton(
                     style: FilledButton.styleFrom(
                       backgroundColor: MyColors.lightPurpleColor,
@@ -88,19 +75,13 @@ class _LoginViewState extends State<LoginView> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const RegisterView()),
+                        MaterialPageRoute<void>(builder: (context) => const RegisterView()),
                       );
                     },
                   ),
                 ),
                 const SizedBox(height: 60,),
-                Text(
-                  'Or sign in With',
-                  style: TextStyle(
-                    color: MyColors.darkPurpleColor,
-                    fontSize: 15,
-                  ),
-                ),
+                const BasicText(text: 'Or sign in With'),
                 const SizedBox(height: 20,),
                 Container(
                   alignment: Alignment.center,
@@ -110,52 +91,52 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     ElevatedButton(
                         onPressed: () {
-                          print("Google");
+                          print('Google');
                         },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(50, 50),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(15),
                         ),
                       ),
                         child: Image.asset(MyImages.googleIcon),
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        print("Fb");
+                        print('Fb');
                       },
                         style: ElevatedButton.styleFrom(
-                            minimumSize: Size(50, 50),
+                            minimumSize: const Size(50, 50),
                             padding: EdgeInsets.zero,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
+                              borderRadius: BorderRadius.circular(15),
                             )
                         ),
                       child: Image.asset(MyImages.fbIcon)
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        print("x");
+                        print('x');
                       },
                         style: ElevatedButton.styleFrom(
-                            minimumSize: Size(50, 50),
+                            minimumSize: const Size(50, 50),
                             padding: EdgeInsets.zero,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
+                              borderRadius: BorderRadius.circular(15),
                             )
                         ),
                       child: Image.asset(MyImages.xIcon)
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        print("In");
+                        print('In');
                       },
                         style: ElevatedButton.styleFrom(
-                            minimumSize: Size(50, 50),
+                            minimumSize: const Size(50, 50),
                             padding: EdgeInsets.zero,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
+                              borderRadius: BorderRadius.circular(15),
                             ),
                         ),
                       child: Image.asset(MyImages.inIcon),
@@ -166,25 +147,19 @@ class _LoginViewState extends State<LoginView> {
                 const SizedBox(height: 70,),
                 Container(
                   alignment: FractionalOffset.bottomCenter,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Don't have account ?",
-                      style: TextStyle(
-                        color: MyColors.darkPurpleColor,
-                        fontSize: 15,
-                      ),
-                    ),
-                    const SizedBox(width: 6,),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const RegisterView()),
-                        );
-                      },
-                      child: _singInText('Sing Up')
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:[
+                      const BasicText(text: "Don't have account ?"),
+                      const SizedBox(width: 6,),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(builder: (context) => const RegisterView(),),
+                          );
+                        },
+                        child: const BasicText(text: 'Sing Up', fontWeight: FontWeight.w700,),
                     ),
                   ],
                 ),
@@ -196,15 +171,4 @@ class _LoginViewState extends State<LoginView> {
       ),
     );
   }
-}
-
-Widget _singInText(String text){
-  return Text(
-    text,
-    style: TextStyle(
-      color: MyColors.darkPurpleColor,
-      fontSize: 15,
-      fontWeight: FontWeight.w700,
-    ),
-  );
 }

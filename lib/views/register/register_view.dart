@@ -1,7 +1,9 @@
+import 'package:dsw_51762/utils/my_colors.dart';
 import 'package:dsw_51762/utils/my_images.dart';
+import 'package:dsw_51762/views/login/login_view.dart';
+import 'package:dsw_51762/views/widgets/basic_text.dart';
+import 'package:dsw_51762/views/widgets/basic_text_form_field.dart';
 import 'package:flutter/material.dart';
-
-import '../../utils/my_colors.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
@@ -10,41 +12,132 @@ class RegisterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SizedBox(
-          width: double.infinity,
-          child: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 56,
-            ),
-
-            child: Column(
-              children: [
-                Align(
-                    alignment: Alignment.topLeft,
-                    child: GestureDetector(
-                        onTap: (){
-                          Navigator.pop(context);
-                        },
-                        child: RichText(
-                        text: TextSpan(
-
-                          children: [
-                            WidgetSpan(
-                              child: Image.asset(MyImages.backIcon,),
-                            ),
-                            TextSpan(text: 'Back', style: TextStyle(
-                              color: MyColors.darkPurpleColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,))
-                          ],
-                        ),
+        body: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+                child: Image.asset(
+                  MyImages.cornerImage,
+                  width: 116,
+                  height: 92,
+                ),
+              ),
+            SizedBox(
+              width: double.infinity,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 56,
+                ),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                      builder: (context) => const LoginView(),
+                                  ),
+                                );
+                              },
+                              child: Row(
+                                children: [
+                                  Image.asset(MyImages.backIcon),
+                                  const BasicText(text: 'Back', ),
+                                ],
+                              )
+                          ),
+                          const SizedBox(height: 100,),
+                          const BasicText(text: 'Sing Up', fontSize: 30, fontWeight: FontWeight.w700,),
+                        ],
                       )
                     ),
+                    const SizedBox(height: 46,),
+                    const BasicTextFormField(
+                      hintText: 'Full Name',
+                      preIcon: MyImages.userIcon,
+                      validator: fullNameValidation,
+                    ),
+                    const SizedBox(height: 20,),
+                    const BasicTextFormField(
+                      hintText: 'Email',
+                      preIcon: MyImages.emailIcon,
+                      validator: emailValidation,
+                    ),
+                    const SizedBox(height: 20,),
+                    const BasicTextFormField(
+                      hintText: 'Password',
+                      preIcon: MyImages.lockIcon,
+                      obscureText: true,
+                      validator: passwdValidation,
+                    ),
+                    const SizedBox(height: 20,),
+                    const BasicTextFormField(
+                      hintText: 'Confirm Password',
+                      preIcon: MyImages.lockIcon,
+                      obscureText: true,
+                      validator: passwdValidation,
+                    ),
+                    const SizedBox(height: 80,),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: FilledButton(
+                        style: FilledButton.styleFrom(
+                          backgroundColor: MyColors.lightPurpleColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        child:  Text(
+                          'Sing Up',
+                          style: TextStyle(
+                            color: MyColors.whiteColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                                builder: (context) => const LoginView(),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 72,),
+                    Container(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const BasicText(text: 'Already have an account ?'),
+                          const SizedBox(width: 6,),
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                      builder: (context) => const LoginView(),
+                                  ),
+                                );
+                              },
+                              child: const BasicText(text: 'Sing In', fontWeight: FontWeight.w700,)),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

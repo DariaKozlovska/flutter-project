@@ -8,5 +8,8 @@ class MyImages {
   static const xIcon = '$_assetsFolder/x-icon.png';
   static const inIcon = '$_assetsFolder/in-icon.png';
 
+  static const cornerImage = '$_assetsFolder/ellipse-register-image.png';
   static const backIcon = '$_assetsFolder/icon-back.png';
+  static const emailIcon = '$_assetsFolder/email-icon.png';
+  static const eyePassIcon = '$_assetsFolder/eye-pass-icon.png';
 }
