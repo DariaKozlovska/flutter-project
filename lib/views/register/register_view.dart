@@ -32,7 +32,7 @@ class RegisterView extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
-                  vertical: 56,
+                  vertical: 76,
                 ),
                 child: SingleChildScrollView(
                   child: Column(

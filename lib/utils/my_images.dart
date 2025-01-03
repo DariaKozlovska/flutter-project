@@ -12,4 +12,7 @@ class MyImages {
   static const backIcon = '$_assetsFolder/icon-back.png';
   static const emailIcon = '$_assetsFolder/email-icon.png';
   static const eyePassIcon = '$_assetsFolder/eye-pass-icon.png';
+
+  static const logoutIcon = '$_assetsFolder/logout-icon.png';
+  static const addNoteIcon = '$_assetsFolder/add-note-icon.png';
 }
