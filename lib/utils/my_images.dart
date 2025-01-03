@@ -15,4 +15,7 @@ class MyImages {
 
   static const logoutIcon = '$_assetsFolder/logout-icon.png';
   static const addNoteIcon = '$_assetsFolder/add-note-icon.png';
+
+  static const editNoteIcon = '$_assetsFolder/edit-icon.png';
+  static const deleteNoteIcon = '$_assetsFolder/trash-icon.png';
 }

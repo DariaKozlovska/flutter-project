@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import '../model/note.dart';
-import 'package:path/path.dart';
 
 class NotesDatabase {
   static final NotesDatabase instance = NotesDatabase._init();
@@ -10,7 +9,6 @@ class NotesDatabase {
 
   NotesDatabase._init();
 
-  // initializing db
   Future<Database> get database async {
     if (_database != null) return _database!;
 
@@ -18,7 +16,6 @@ class NotesDatabase {
     return _database!;
   }
 
-  // opening db
   Future<Database> _initDB(String filePath) async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
@@ -26,31 +23,35 @@ class NotesDatabase {
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
-  // creating db
   Future _createDB(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = 'TEXT NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const textType = 'TEXT NOT NULL';
 
     await db.execute('''
-    CREATE TABLE $tableNotes (
-    ${NoteFields.id} $idType,
-    ${NoteFields.number} $integerType,
-    ${NoteFields.title} $textType,
-    ${NoteFields.description} $textType,
-    ${NoteFields.time} $textType,
-    )
-    ''');
+CREATE TABLE $tableNotes ( 
+  ${NoteFields.id} $idType, 
+  ${NoteFields.title} $textType,
+  ${NoteFields.description} $textType,
+  ${NoteFields.time} $textType
+  )
+''');
   }
 
-  // creating fields
   Future<Note> create(Note note) async {
     final db = await instance.database;
+
+    // final json = note.toJson();
+    // final columns =
+    //     '${NoteFields.title}, ${NoteFields.description}, ${NoteFields.time}';
+    // final values =
+    //     '${json[NoteFields.title]}, ${json[NoteFields.description]}, ${json[NoteFields.time]}';
+    // final id = await db
+    //     .rawInsert('INSERT INTO table_name ($columns) VALUES ($values)');
+
     final id = await db.insert(tableNotes, note.toJson());
     return note.copy(id: id);
   }
 
-  // reading one note
   Future<Note> readNote(int id) async {
     final db = await instance.database;
 
@@ -61,24 +62,25 @@ class NotesDatabase {
       whereArgs: [id],
     );
 
-    if(maps.isNotEmpty) {
+    if (maps.isNotEmpty) {
       return Note.fromJson(maps.first);
     } else {
-      throw Exception('OD $id not found');
+      throw Exception('ID $id not found');
     }
-
   }
 
-  // reading all notes
   Future<List<Note>> readAllNotes() async {
     final db = await instance.database;
+
     final orderBy = '${NoteFields.time} ASC';
+    // final result =
+    //     await db.rawQuery('SELECT * FROM $tableNotes ORDER BY $orderBy');
+
     final result = await db.query(tableNotes, orderBy: orderBy);
 
     return result.map((json) => Note.fromJson(json)).toList();
   }
 
-  // updating notes
   Future<int> update(Note note) async {
     final db = await instance.database;
 
@@ -90,7 +92,6 @@ class NotesDatabase {
     );
   }
 
-  // deleting notes
   Future<int> delete(int id) async {
     final db = await instance.database;
 
@@ -101,11 +102,9 @@ class NotesDatabase {
     );
   }
 
-  // closing db
   Future close() async {
     final db = await instance.database;
 
-    await db.close();
+    db.close();
   }
-
 }
